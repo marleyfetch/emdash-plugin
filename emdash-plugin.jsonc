@@ -1,0 +1,31 @@
+{
+	"$schema": "./node_modules/@emdash-cms/plugin-cli/schemas/emdash-plugin.schema.json",
+
+	"slug": "marleyfetch-email",
+	"publisher": "did:plc:replace-me",
+
+	"license": "MIT",
+	"author": { "name": "MarleyFetch", "url": "https://marleyfetch.com" },
+	"security": { "email": "support@marleyfetch.com" },
+	"description": "Send EmDash email through your own SMTP server with MarleyFetch.",
+	"repo": "https://github.com/marleyfetch/emdash-plugin",
+
+	// Trust contract — what runtime APIs the plugin asks for.
+	// Empty arrays mean no extra privileges beyond logging,
+	// KV, and route/hook registration. Changing these between
+	// releases requires a version bump because installed
+	// users have consented to the old contract.
+	"capabilities": ["hooks.email-transport:register", "network:request"],
+	"allowedHosts": ["api.marleyfetch.com"],
+	"storage": {},
+
+	"admin": {
+		"settingsSchema": {
+			"apiKey": {
+				"type": "secret",
+				"label": "MarleyFetch API key",
+				"description": "Create one in the MarleyFetch dashboard under API Keys. Email goes out from the key's connection, or your default connection."
+			}
+		}
+	}
+}
